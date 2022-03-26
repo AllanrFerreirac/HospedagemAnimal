@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace HospedagemDeAnimal
 {
@@ -62,14 +63,24 @@ namespace HospedagemDeAnimal
             cmd.CommandText = "SELECT * FROM animal WHERE Id = '" + id + "'";
             cmd.CommandType = CommandType.Text;
             SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
             {
-                cpf_tutor = (int)dr["cpf_tutor"];
-                nome = dr["nome"].ToString();
-                sexo = dr["sexo"].ToString();
-                breed = dr["breed"].ToString();
-                especie = dr["especie"].ToString();
-                dt_nascimento = Convert.ToDateTime(dr["dt_nascimento"]);
+                while (dr.Read())
+                {
+                    cpf_tutor = (int)dr["cpf_tutor"];
+                    nome = dr["nome"].ToString();
+                    sexo = dr["sexo"].ToString();
+                    breed = dr["breed"].ToString();
+                    especie = dr["especie"].ToString();
+                    dt_nascimento = Convert.ToDateTime(dr["dt_nascimento"]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum animal foi encontrado", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

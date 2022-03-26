@@ -13,7 +13,7 @@ namespace HospedagemDeAnimal
 {
     public partial class FormPet : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Aluno\source\repos\HospedagemPet-main\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\DatabaseHospedagem.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(ClassConecta.stringconexao);
 
         public FormPet()
         {
@@ -53,11 +53,6 @@ namespace HospedagemDeAnimal
                     dgvPet.Rows.Add(item);
                 }
             }
-            else
-            {
-                MessageBox.Show("Nenhum animal encontrado!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                con.Close();
-            }
         }
 
         private void btnLocalizar_Click_1(object sender, EventArgs e)
@@ -67,7 +62,6 @@ namespace HospedagemDeAnimal
                 int id = Convert.ToInt32(txtID.Text.Trim());
                 Pet pet = new Pet();
                 pet.Localiza(id);
-                txtIdTutor.Text = pet.cpf_tutor.ToString().Trim();
                 txtNome.Text = pet.nome.Trim();
                 txtSexo.Text = pet.sexo.Trim();
                 txtBreed.Text = pet.breed.Trim();
@@ -84,12 +78,11 @@ namespace HospedagemDeAnimal
         {
             try
             {
+                var user = FormLogin.usuarioconectado;
                 Pet pet = new Pet();
-                pet.Inserir(txtIdTutor.Text, txtNome.Text, txtSexo.Text, txtBreed.Text, txtEspecie.Text, dtpDt_N.Value);
+                pet.Inserir(user, txtNome.Text, txtSexo.Text, txtBreed.Text, txtEspecie.Text, dtpDt_N.Value);
                 MessageBox.Show("Animal cadastrado com sucesso!", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MeusPets();
-                string cpf = txtIdTutor.Text;
-                txtIdTutor.Text = "";
                 txtNome.Text = "";
                 txtSexo.Text = "";
                 txtBreed.Text = "";
@@ -107,12 +100,11 @@ namespace HospedagemDeAnimal
         {
             try
             {
+                var user = FormLogin.usuarioconectado;
                 Pet pet = new Pet();
-                pet.Atualizar(txtID.Text, txtIdTutor.Text, txtNome.Text, txtSexo.Text, txtBreed.Text, txtEspecie.Text, dtpDt_N.Value);
+                pet.Atualizar(txtID.Text, user, txtNome.Text, txtSexo.Text, txtBreed.Text, txtEspecie.Text, dtpDt_N.Value);
                 MessageBox.Show("Animal atualizado com sucesso!", "Atualizar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MeusPets();
-                string cpf = txtIdTutor.Text;
-                txtIdTutor.Text = "";
                 txtNome.Text = "";
                 txtSexo.Text = "";
                 txtBreed.Text = "";
@@ -135,7 +127,6 @@ namespace HospedagemDeAnimal
                 pet.Excluir(id);
                 MessageBox.Show("Cliente excluído com sucesso!", "Deletar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MeusPets();
-                txtIdTutor.Text = "";
                 txtNome.Text = "";
                 txtSexo.Text = "";
                 txtBreed.Text = "";

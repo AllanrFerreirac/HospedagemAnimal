@@ -10,7 +10,8 @@ namespace HospedagemDeAnimal
 {
     class ClassConecta
     {
-        private static string str = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Aluno\source\repos\HospedagemPet-main\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\DatabaseHospedagem.mdf;Integrated Security=True";
+        public static string stringconexao = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Camilla\source\repos\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\DatabaseHospedagem.mdf;Integrated Security=True";
+        private static string str = stringconexao;
         private static SqlConnection con = null;
 
         public static SqlConnection ObterConexao()
@@ -24,7 +25,7 @@ namespace HospedagemDeAnimal
             {
                 con.Open();
             }
-            catch (SqlException sqle)
+            catch (SqlException)
             {
                 con = null;
             }

@@ -118,17 +118,23 @@ namespace HospedagemDeAnimal
             txtCidade.Text = "";
         }
 
-        private void btnCadastrar_Click(object sender, EventArgs e)
+        private async void btnCadastrar_Click(object sender, EventArgs e)
         {
             try
             {
                 Usuario usuario = new Usuario();
-                usuario.Inserir(txtNome.Text, Convert.ToInt32(txtCPF.Text), Convert.ToInt32(txtCelular.Text), Convert.ToInt32(txtCEP.Text), txtEndereco.Text, txtCidade.Text, txtEmail.Text, txtSenha.Text);
-                MessageBox.Show("Cliente cadastrado com sucesso!", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                List<Usuario> usu = usuario.listacliente();
+                var result = await usuario.Inserir(txtNome.Text, txtCPF.Text, Convert.ToInt32(txtCelular.Text), Convert.ToInt32(txtCEP.Text), txtEndereco.Text, txtCidade.Text, txtEmail.Text, txtSenha.Text);
+                //List<Usuario> usu = usuario.listacliente();
                 this.Hide();
-                FormLogin hos = new FormLogin();
-                hos.Show();
+                if (result)
+                {
+                    FormLogin hos = new FormLogin();
+                    hos.Show();
+                }
+                else
+                {
+                    this.Refresh();
+                }
                 ClassConecta.FecharConexao();
                 //dgvCliente.DataSource = usu;
                 txtNome.Text = "";

@@ -59,7 +59,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 177);
+            this.label3.Location = new System.Drawing.Point(168, 147);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 67;
@@ -67,9 +67,10 @@
             // 
             // dtpDtFim
             // 
-            this.dtpDtFim.Location = new System.Drawing.Point(15, 194);
+            this.dtpDtFim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDtFim.Location = new System.Drawing.Point(171, 164);
             this.dtpDtFim.Name = "dtpDtFim";
-            this.dtpDtFim.Size = new System.Drawing.Size(232, 20);
+            this.dtpDtFim.Size = new System.Drawing.Size(148, 20);
             this.dtpDtFim.TabIndex = 66;
             // 
             // cbxAnimal
@@ -85,16 +86,16 @@
             this.dgvPet.AllowUserToAddRows = false;
             this.dgvPet.AllowUserToDeleteRows = false;
             this.dgvPet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPet.Location = new System.Drawing.Point(15, 236);
+            this.dgvPet.Location = new System.Drawing.Point(15, 222);
             this.dgvPet.Name = "dgvPet";
             this.dgvPet.ReadOnly = true;
-            this.dgvPet.Size = new System.Drawing.Size(552, 268);
+            this.dgvPet.Size = new System.Drawing.Size(552, 282);
             this.dgvPet.TabIndex = 62;
             this.dgvPet.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPet_CellClick);
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(460, 206);
+            this.btnVoltar.Location = new System.Drawing.Point(460, 193);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(107, 23);
             this.btnVoltar.TabIndex = 61;
@@ -135,7 +136,7 @@
             // lblDtInicio
             // 
             this.lblDtInicio.AutoSize = true;
-            this.lblDtInicio.Location = new System.Drawing.Point(12, 128);
+            this.lblDtInicio.Location = new System.Drawing.Point(12, 147);
             this.lblDtInicio.Name = "lblDtInicio";
             this.lblDtInicio.Size = new System.Drawing.Size(49, 13);
             this.lblDtInicio.TabIndex = 57;
@@ -143,9 +144,10 @@
             // 
             // dtpDtInicio
             // 
-            this.dtpDtInicio.Location = new System.Drawing.Point(15, 145);
+            this.dtpDtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDtInicio.Location = new System.Drawing.Point(15, 164);
             this.dtpDtInicio.Name = "dtpDtInicio";
-            this.dtpDtInicio.Size = new System.Drawing.Size(232, 20);
+            this.dtpDtInicio.Size = new System.Drawing.Size(130, 20);
             this.dtpDtInicio.TabIndex = 56;
             // 
             // lblNome

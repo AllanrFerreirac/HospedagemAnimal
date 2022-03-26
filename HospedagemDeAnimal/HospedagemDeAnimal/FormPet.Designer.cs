@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.txtSexo = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtIdTutor = new System.Windows.Forms.TextBox();
-            this.btnBuscarPets = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtBuscarPets = new System.Windows.Forms.TextBox();
             this.dgvPet = new System.Windows.Forms.DataGridView();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnExcluirPet = new System.Windows.Forms.Button();
@@ -51,6 +46,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.btnLocalizar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,63 +57,21 @@
             this.txtSexo.Size = new System.Drawing.Size(144, 20);
             this.txtSexo.TabIndex = 47;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(282, 205);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
-            this.label2.TabIndex = 46;
-            this.label2.Text = "CPF Tutor";
-            // 
-            // txtIdTutor
-            // 
-            this.txtIdTutor.Location = new System.Drawing.Point(285, 221);
-            this.txtIdTutor.Name = "txtIdTutor";
-            this.txtIdTutor.Size = new System.Drawing.Size(144, 20);
-            this.txtIdTutor.TabIndex = 45;
-            // 
-            // btnBuscarPets
-            // 
-            this.btnBuscarPets.Location = new System.Drawing.Point(121, 318);
-            this.btnBuscarPets.Name = "btnBuscarPets";
-            this.btnBuscarPets.Size = new System.Drawing.Size(114, 23);
-            this.btnBuscarPets.TabIndex = 44;
-            this.btnBuscarPets.Text = "Buscar meus pets";
-            this.btnBuscarPets.UseVisualStyleBackColor = true;
-            this.btnBuscarPets.Click += new System.EventHandler(this.btnBuscarPets_Click_1);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 304);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 13);
-            this.label1.TabIndex = 43;
-            this.label1.Text = "Digite seu cpf";
-            // 
-            // txtBuscarPets
-            // 
-            this.txtBuscarPets.Location = new System.Drawing.Point(15, 320);
-            this.txtBuscarPets.Name = "txtBuscarPets";
-            this.txtBuscarPets.Size = new System.Drawing.Size(100, 20);
-            this.txtBuscarPets.TabIndex = 42;
-            // 
             // dgvPet
             // 
             this.dgvPet.AllowUserToAddRows = false;
             this.dgvPet.AllowUserToDeleteRows = false;
             this.dgvPet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPet.Location = new System.Drawing.Point(15, 347);
+            this.dgvPet.Location = new System.Drawing.Point(15, 294);
             this.dgvPet.Name = "dgvPet";
             this.dgvPet.ReadOnly = true;
-            this.dgvPet.Size = new System.Drawing.Size(552, 169);
+            this.dgvPet.Size = new System.Drawing.Size(539, 222);
             this.dgvPet.TabIndex = 41;
             this.dgvPet.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPet_CellClick);
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(460, 218);
+            this.btnVoltar.Location = new System.Drawing.Point(447, 265);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(107, 23);
             this.btnVoltar.TabIndex = 40;
@@ -127,7 +81,7 @@
             // 
             // btnExcluirPet
             // 
-            this.btnExcluirPet.Location = new System.Drawing.Point(492, 117);
+            this.btnExcluirPet.Location = new System.Drawing.Point(479, 117);
             this.btnExcluirPet.Name = "btnExcluirPet";
             this.btnExcluirPet.Size = new System.Drawing.Size(75, 23);
             this.btnExcluirPet.TabIndex = 39;
@@ -137,7 +91,7 @@
             // 
             // btnAttPet
             // 
-            this.btnAttPet.Location = new System.Drawing.Point(492, 77);
+            this.btnAttPet.Location = new System.Drawing.Point(479, 77);
             this.btnAttPet.Name = "btnAttPet";
             this.btnAttPet.Size = new System.Drawing.Size(75, 23);
             this.btnAttPet.TabIndex = 38;
@@ -147,7 +101,7 @@
             // 
             // btnCadastroPet
             // 
-            this.btnCadastroPet.Location = new System.Drawing.Point(492, 39);
+            this.btnCadastroPet.Location = new System.Drawing.Point(479, 39);
             this.btnCadastroPet.Name = "btnCadastroPet";
             this.btnCadastroPet.Size = new System.Drawing.Size(75, 23);
             this.btnCadastroPet.TabIndex = 37;
@@ -255,17 +209,23 @@
             this.btnLocalizar.UseVisualStyleBackColor = true;
             this.btnLocalizar.Click += new System.EventHandler(this.btnLocalizar_Click_1);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 275);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 16);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "MEUS PETS";
+            // 
             // FormPet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 529);
-            this.Controls.Add(this.txtSexo);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtIdTutor);
-            this.Controls.Add(this.btnBuscarPets);
+            this.ClientSize = new System.Drawing.Size(564, 529);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtBuscarPets);
+            this.Controls.Add(this.txtSexo);
             this.Controls.Add(this.dgvPet);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnExcluirPet);
@@ -284,7 +244,7 @@
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.btnLocalizar);
             this.Name = "FormPet";
-            this.Text = "FormPet";
+            this.Text = "Meus Pets";
             this.Load += new System.EventHandler(this.FormPet_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPet)).EndInit();
             this.ResumeLayout(false);
@@ -295,11 +255,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtSexo;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtIdTutor;
-        private System.Windows.Forms.Button btnBuscarPets;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtBuscarPets;
         private System.Windows.Forms.DataGridView dgvPet;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Button btnExcluirPet;
@@ -317,5 +272,6 @@
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.Button btnLocalizar;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -74,6 +74,12 @@
     <Compile Include="FormCadastroCliente.Designer.cs">
       <DependentUpon>FormCadastroCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormHospedagemAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHospedagemAdmin.designer.cs">
+      <DependentUpon>FormHospedagemAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormHospedagemCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCadastroCliente.resx">
       <DependentUpon>FormCadastroCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHospedagemAdmin.resx">
+      <DependentUpon>FormHospedagemAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormHospedagemCliente.resx">
       <DependentUpon>FormHospedagemCliente.cs</DependentUpon>

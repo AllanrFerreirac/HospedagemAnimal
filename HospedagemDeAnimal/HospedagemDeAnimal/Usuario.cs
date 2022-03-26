@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace HospedagemDeAnimal
 {
-    internal class Usuario
+    public class Usuario
     {
         public int Id { get; set; }
         public string nome { get; set; }
-        public int cpf { get; set; }
+        public string cpf { get; set; }
         public int celular { get; set; }
         public int cep { get; set; }
         public string endereco { get; set; }
@@ -20,6 +21,7 @@ namespace HospedagemDeAnimal
         public string email { get; set; }
         public string senha { get; set; }
         public string processo { get; set; }
+        
         public List<Usuario> listacliente()
         {
             List<Usuario> li = new List<Usuario>();
@@ -33,7 +35,7 @@ namespace HospedagemDeAnimal
                 Usuario c = new Usuario();
                 c.Id = (int)dr["Id"];
                 c.nome = dr["nome"].ToString();
-                c.cpf = (int)dr["cpf"];
+                c.cpf = dr["cpf"].ToString();
                 c.celular = (int)dr["celular"];
                 c.cep = (int)dr["cep"];
                 c.endereco = dr["endereco"].ToString();
@@ -44,15 +46,30 @@ namespace HospedagemDeAnimal
             }
             return li;
         }
-        public void Inserir(string nome, int cpf, int celular, int cep, string endereco, string cidade, string email, string senha)
+
+        public async Task<bool> Inserir(string nome, string cpf, int celular, int cep, string endereco, string cidade, string email, string senha)
         {
             SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "INSERT INTO usuario(nome,cpf,celular,cep,endereco,cidade,email,senha) VALUES ('" + nome + "','" + cpf + "','" + celular + "','" + cep + "','" + endereco + "','" + cidade + "','" + email + "','" + senha + "')";
-            cmd.CommandType = CommandType.Text;
-            cmd.ExecuteNonQuery();
-            ClassConecta.FecharConexao();
+            var processo = "user";
+            var busca = await BuscarPorCPF(cpf);
+            if (busca)
+            {
+                cmd.CommandText = "INSERT INTO usuario(nome,cpf,celular,cep,endereco,cidade,email,senha,processo) VALUES ('" + nome + "','" + cpf + "','" + celular + "','" + cep + "','" + endereco + "','" + cidade + "','" + email + "','" + senha + "','" + processo + "')";
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Cadastro realizado com sucesso!", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClassConecta.FecharConexao();
+                return true;
+            }
+            else
+            {
+                ClassConecta.FecharConexao();
+                return false;
+            }
+
         }
+
         public void Procurar(int id)
         {
             SqlConnection con = ClassConecta.ObterConexao();
@@ -63,16 +80,38 @@ namespace HospedagemDeAnimal
             while (dr.Read())
             {
                 nome = dr["nome"].ToString();
-                cpf = (int)dr["cpf"];
+                cpf = dr["cpf"].ToString();
                 celular = (int)dr["celular"];
                 cep = (int)dr["cep"];
                 endereco = dr["endereco"].ToString();
                 cidade = dr["cidade"].ToString();
                 email = dr["email"].ToString();
                 senha = "******";
+                senha = "******";
                 processo = dr["processo"].ToString();
             }
         }
+
+        public async Task<bool> BuscarPorCPF(string cpf)
+        {
+            SqlConnection con = ClassConecta.ObterConexao();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT * FROM usuario WHERE cpf='" + cpf + "'";
+            cmd.CommandType = CommandType.Text;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                MessageBox.Show("Já existe um usuário cadastrado com esse CPF", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public void Exclui(int id)
         {
             SqlConnection con = ClassConecta.ObterConexao();
