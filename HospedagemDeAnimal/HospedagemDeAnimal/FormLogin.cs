@@ -14,6 +14,7 @@ namespace HospedagemDeAnimal
 {
     public partial class FormLogin : Form
     {
+        public static string usuarioconectado;
         public FormLogin()
         {
             InitializeComponent();
@@ -37,28 +38,29 @@ namespace HospedagemDeAnimal
         {
             try
             {
-                //SqlConnection con = ClassConecta.ObterConexao();
-                //SqlCommand cmd = con.CreateCommand();
-                //cmd.CommandText = "SELECT * FROM usuario WHERE cpf=@cpf AND senha=@senha";
-                //cmd.CommandType = CommandType.Text;
-                //cmd.Parameters.AddWithValue("@login", SqlDbType.NChar).Value = txtCPF.Text.Trim();
-                //cmd.Parameters.AddWithValue("@senha", SqlDbType.NChar).Value = txtSenha.Text.Trim();
-                //SqlDataReader usuario = cmd.ExecuteReader();
-                //if (usuario.HasRows)
-                //{
-                    //this.Hide();
-                    //FormHospedagem hos = new FormHospedagem();
-                    //hos.Show();
-                    //ClassConecta.FecharConexao();
-               // }
-                //else
-               // {
-                   // MessageBox.Show("CPF ou senha inválido! Por favor, tente novamente!", "Erro de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                   // txtCPF.Text = "";
-                  //  txtSenha.Text = "";
-                  //  txtCPF.Focus();
-                  //  ClassConecta.FecharConexao();
-                //}
+                SqlConnection con = ClassConecta.ObterConexao();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT * FROM usuario WHERE cpf=@cpf AND senha=@senha";
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@cpf", SqlDbType.NChar).Value = txtCPF.Text.Trim();
+                cmd.Parameters.AddWithValue("@senha", SqlDbType.NChar).Value = txtSenha.Text.Trim();
+                SqlDataReader usuario = cmd.ExecuteReader();
+                if (usuario.HasRows)
+                {
+                    usuarioconectado = txtCPF.Text;
+                    this.Hide();
+                    FormPrincipal hos = new FormPrincipal();
+                    hos.Show();
+                    ClassConecta.FecharConexao();
+                }
+                else
+                {
+                    MessageBox.Show("CPF ou senha inválido! Por favor, tente novamente!", "Erro de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCPF.Text = "";
+                    txtSenha.Text = "";
+                    txtCPF.Focus();
+                    ClassConecta.FecharConexao();
+                }
             }
             catch (Exception er)
             {

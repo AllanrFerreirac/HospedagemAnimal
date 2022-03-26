@@ -113,6 +113,7 @@
             this.dgvPet.ReadOnly = true;
             this.dgvPet.Size = new System.Drawing.Size(552, 169);
             this.dgvPet.TabIndex = 41;
+            this.dgvPet.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPet_CellClick);
             // 
             // btnVoltar
             // 
@@ -284,6 +285,7 @@
             this.Controls.Add(this.btnLocalizar);
             this.Name = "FormPet";
             this.Text = "FormPet";
+            this.Load += new System.EventHandler(this.FormPet_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

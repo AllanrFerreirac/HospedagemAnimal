@@ -32,8 +32,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtpDtFim = new System.Windows.Forms.DateTimePicker();
             this.cbxAnimal = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtIdTutor = new System.Windows.Forms.TextBox();
             this.dgvPet = new System.Windows.Forms.DataGridView();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnExcluirPet = new System.Windows.Forms.Button();
@@ -56,6 +54,7 @@
             this.btnConfirmar.TabIndex = 68;
             this.btnConfirmar.Text = "Confirmar Hospedagem";
             this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click_1);
             // 
             // label3
             // 
@@ -81,22 +80,6 @@
             this.cbxAnimal.Size = new System.Drawing.Size(322, 21);
             this.cbxAnimal.TabIndex = 65;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(219, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
-            this.label2.TabIndex = 64;
-            this.label2.Text = "CPF Tutor";
-            // 
-            // txtIdTutor
-            // 
-            this.txtIdTutor.Location = new System.Drawing.Point(222, 25);
-            this.txtIdTutor.Name = "txtIdTutor";
-            this.txtIdTutor.Size = new System.Drawing.Size(144, 20);
-            this.txtIdTutor.TabIndex = 63;
-            // 
             // dgvPet
             // 
             this.dgvPet.AllowUserToAddRows = false;
@@ -107,6 +90,7 @@
             this.dgvPet.ReadOnly = true;
             this.dgvPet.Size = new System.Drawing.Size(552, 268);
             this.dgvPet.TabIndex = 62;
+            this.dgvPet.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPet_CellClick);
             // 
             // btnVoltar
             // 
@@ -116,6 +100,7 @@
             this.btnVoltar.TabIndex = 61;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // btnExcluirPet
             // 
@@ -125,6 +110,7 @@
             this.btnExcluirPet.TabIndex = 60;
             this.btnExcluirPet.Text = "Excluir Hospedagem";
             this.btnExcluirPet.UseVisualStyleBackColor = true;
+            this.btnExcluirPet.Click += new System.EventHandler(this.btnExcluirPet_Click_1);
             // 
             // btnAttPet
             // 
@@ -134,6 +120,7 @@
             this.btnAttPet.TabIndex = 59;
             this.btnAttPet.Text = "Editar Hospedagem";
             this.btnAttPet.UseVisualStyleBackColor = true;
+            this.btnAttPet.Click += new System.EventHandler(this.btnAttPet_Click_1);
             // 
             // btnCadastro
             // 
@@ -143,6 +130,7 @@
             this.btnCadastro.TabIndex = 58;
             this.btnCadastro.Text = "Cadastrar Hospedagem";
             this.btnCadastro.UseVisualStyleBackColor = true;
+            this.btnCadastro.Click += new System.EventHandler(this.btnCadastro_Click_1);
             // 
             // lblDtInicio
             // 
@@ -193,6 +181,7 @@
             this.btnLocalizar.TabIndex = 52;
             this.btnLocalizar.Text = "Localizar";
             this.btnLocalizar.UseVisualStyleBackColor = true;
+            this.btnLocalizar.Click += new System.EventHandler(this.btnLocalizar_Click_1);
             // 
             // FormHospedagemCliente
             // 
@@ -203,8 +192,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dtpDtFim);
             this.Controls.Add(this.cbxAnimal);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtIdTutor);
             this.Controls.Add(this.dgvPet);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnExcluirPet);
@@ -218,6 +205,7 @@
             this.Controls.Add(this.btnLocalizar);
             this.Name = "FormHospedagemCliente";
             this.Text = "FormHospedagemCliente";
+            this.Load += new System.EventHandler(this.FormHospedagemCliente_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -230,8 +218,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtpDtFim;
         private System.Windows.Forms.ComboBox cbxAnimal;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtIdTutor;
         private System.Windows.Forms.DataGridView dgvPet;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Button btnExcluirPet;

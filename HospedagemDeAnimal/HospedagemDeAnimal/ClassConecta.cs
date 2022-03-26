@@ -10,7 +10,7 @@ namespace HospedagemDeAnimal
 {
     class ClassConecta
     {
-        private static string str = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\HospedagemDeAnimal\HospedagemDeAnimal\DatabaseHospedagem.mdf;Integrated Security=True";
+        private static string str = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Aluno\source\repos\HospedagemPet-main\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\DatabaseHospedagem.mdf;Integrated Security=True";
         private static SqlConnection con = null;
 
         public static SqlConnection ObterConexao()

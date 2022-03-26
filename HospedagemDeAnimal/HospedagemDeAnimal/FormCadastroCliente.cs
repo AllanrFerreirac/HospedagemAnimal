@@ -68,12 +68,12 @@ namespace HospedagemDeAnimal
                                 txtEndereco.Text = valor[1];
                             }
 
-                            //Complemento
-                            if (cont == 3)
-                            {
-                                string[] valor = substring.Split(":".ToCharArray());
-                                txtComplemento.Text = valor[1];
-                            }
+                            ////Complemento
+                            //if (cont == 3)
+                            //{
+                            //    string[] valor = substring.Split(":".ToCharArray());
+                            //    txtComplemento.Text = valor[1];
+                            //}
 
                             //Bairro
                             //if (cont == 4)
@@ -115,7 +115,6 @@ namespace HospedagemDeAnimal
             txtEmail.Text = "";
             txtCEP.Text = "";
             txtEndereco.Text = "";
-            txtComplemento.Text = "";
             txtCidade.Text = "";
         }
 
@@ -124,9 +123,13 @@ namespace HospedagemDeAnimal
             try
             {
                 Usuario usuario = new Usuario();
-                usuario.Inserir(txtNome.Text, Convert.ToInt32(txtCPF.Text), Convert.ToInt32(txtCelular.Text), Convert.ToInt32(txtCEP.Text), txtEmail.Text, txtEndereco.Text, txtComplemento.Text, txtCidade.Text);
+                usuario.Inserir(txtNome.Text, Convert.ToInt32(txtCPF.Text), Convert.ToInt32(txtCelular.Text), Convert.ToInt32(txtCEP.Text), txtEndereco.Text, txtCidade.Text, txtEmail.Text, txtSenha.Text);
                 MessageBox.Show("Cliente cadastrado com sucesso!", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 List<Usuario> usu = usuario.listacliente();
+                this.Hide();
+                FormLogin hos = new FormLogin();
+                hos.Show();
+                ClassConecta.FecharConexao();
                 //dgvCliente.DataSource = usu;
                 txtNome.Text = "";
                 txtCPF.Text = "";
@@ -134,7 +137,6 @@ namespace HospedagemDeAnimal
                 txtEmail.Text = "";
                 txtCEP.Text = "";
                 txtEndereco.Text = "";
-                txtComplemento.Text = "";
                 txtCidade.Text = "";
                 ClassConecta.FecharConexao();
             }
@@ -143,5 +145,7 @@ namespace HospedagemDeAnimal
                 MessageBox.Show(er.Message);
             }
         }
+
+    
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +24,7 @@ namespace HospedagemDeAnimal
         {
             List<Pet> li = new List<Pet>();
 
-            SqlConnection con = DtContext.ObterConexao();
+            SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandText = "SELECT * FROM animal";
             cmd.CommandType = CommandType.Text;
@@ -45,17 +47,17 @@ namespace HospedagemDeAnimal
 
         public void Inserir(string cpf_tutor, string nome, string sexo, string breed, string especie, DateTime dt_nascimento)
         {
-            SqlConnection con = DtContext.ObterConexao();
+            SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandText = "INSERT INTO animal(cpf_tutor,nome,sexo,breed,especie,dt_nascimento) VALUES ('" + Convert.ToInt32(cpf_tutor) + "','" + nome + "','" + sexo + "','" + breed + "','" + especie + "',Convert(DateTime,'" + dt_nascimento + "',103))";
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
-            DtContext.FecharConexao();
+            ClassConecta.FecharConexao();
         }
 
         public void Localiza(int id)
         {
-            SqlConnection con = DtContext.ObterConexao();
+            SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandText = "SELECT * FROM animal WHERE Id = '" + id + "'";
             cmd.CommandType = CommandType.Text;
@@ -73,22 +75,22 @@ namespace HospedagemDeAnimal
 
         public void Atualizar(string id, string cpf_tutor, string nome, string sexo, string breed, string especie, DateTime dt_nascimento)
         {
-            SqlConnection con = DtContext.ObterConexao();
+            SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandText = "UPDATE animal SET cpf_tutor='" + Convert.ToInt32(cpf_tutor) + "',nome='" + nome + "', sexo='" + sexo + "', breed='" + breed + "', especie='" + especie + "', dt_nascimento=Convert(DateTime,'" + dt_nascimento + "',103) WHERE Id = '" + Convert.ToInt32(id) + "'";
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
-            DtContext.FecharConexao();
+            ClassConecta.FecharConexao();
         }
 
         public void Excluir(string id)
         {
-            SqlConnection con = DtContext.ObterConexao();
+            SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
             string sql = "DELETE FROM animal WHERE Id = '" + Convert.ToInt32(id) + "'";
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
-            DtContext.FecharConexao();
+            ClassConecta.FecharConexao();
         }
     }
 }

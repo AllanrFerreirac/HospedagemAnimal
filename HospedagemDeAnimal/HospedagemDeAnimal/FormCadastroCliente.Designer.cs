@@ -40,14 +40,14 @@
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.lblEndereco = new System.Windows.Forms.Label();
-            this.txtComplemento = new System.Windows.Forms.TextBox();
-            this.lblComplemento = new System.Windows.Forms.Label();
             this.txtCidade = new System.Windows.Forms.TextBox();
             this.lblCidade = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtSenha = new System.Windows.Forms.TextBox();
+            this.lblSenha = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblNome
@@ -158,28 +158,10 @@
             this.lblEndereco.TabIndex = 10;
             this.lblEndereco.Text = "Endereço";
             // 
-            // txtComplemento
-            // 
-            this.txtComplemento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtComplemento.Location = new System.Drawing.Point(358, 184);
-            this.txtComplemento.Name = "txtComplemento";
-            this.txtComplemento.Size = new System.Drawing.Size(276, 22);
-            this.txtComplemento.TabIndex = 13;
-            // 
-            // lblComplemento
-            // 
-            this.lblComplemento.AutoSize = true;
-            this.lblComplemento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComplemento.Location = new System.Drawing.Point(355, 165);
-            this.lblComplemento.Name = "lblComplemento";
-            this.lblComplemento.Size = new System.Drawing.Size(103, 16);
-            this.lblComplemento.TabIndex = 12;
-            this.lblComplemento.Text = "Complemento";
-            // 
             // txtCidade
             // 
             this.txtCidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCidade.Location = new System.Drawing.Point(358, 260);
+            this.txtCidade.Location = new System.Drawing.Point(358, 183);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(276, 22);
             this.txtCidade.TabIndex = 15;
@@ -188,7 +170,7 @@
             // 
             this.lblCidade.AutoSize = true;
             this.lblCidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCidade.Location = new System.Drawing.Point(355, 241);
+            this.lblCidade.Location = new System.Drawing.Point(355, 164);
             this.lblCidade.Name = "lblCidade";
             this.lblCidade.Size = new System.Drawing.Size(58, 16);
             this.lblCidade.TabIndex = 14;
@@ -210,7 +192,7 @@
             // 
             this.btnCadastrar.BackColor = System.Drawing.Color.Silver;
             this.btnCadastrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastrar.Location = new System.Drawing.Point(85, 322);
+            this.btnCadastrar.Location = new System.Drawing.Point(12, 318);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(93, 31);
             this.btnCadastrar.TabIndex = 17;
@@ -222,7 +204,7 @@
             // 
             this.btnLimpar.BackColor = System.Drawing.Color.Silver;
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpar.Location = new System.Drawing.Point(426, 322);
+            this.btnLimpar.Location = new System.Drawing.Point(541, 318);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(93, 31);
             this.btnLimpar.TabIndex = 18;
@@ -242,20 +224,38 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // txtSenha
+            // 
+            this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSenha.Location = new System.Drawing.Point(358, 259);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.Size = new System.Drawing.Size(276, 22);
+            this.txtSenha.TabIndex = 21;
+            // 
+            // lblSenha
+            // 
+            this.lblSenha.AutoSize = true;
+            this.lblSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSenha.Location = new System.Drawing.Point(355, 240);
+            this.lblSenha.Name = "lblSenha";
+            this.lblSenha.Size = new System.Drawing.Size(52, 16);
+            this.lblSenha.TabIndex = 20;
+            this.lblSenha.Text = "Senha";
+            // 
             // FormCadastroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(715, 397);
+            this.ClientSize = new System.Drawing.Size(715, 490);
+            this.Controls.Add(this.txtSenha);
+            this.Controls.Add(this.lblSenha);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtCidade);
             this.Controls.Add(this.lblCidade);
-            this.Controls.Add(this.txtComplemento);
-            this.Controls.Add(this.lblComplemento);
             this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.lblEndereco);
             this.Controls.Add(this.txtEmail);
@@ -290,13 +290,13 @@
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.Label lblEndereco;
-        private System.Windows.Forms.TextBox txtComplemento;
-        private System.Windows.Forms.Label lblComplemento;
         private System.Windows.Forms.TextBox txtCidade;
         private System.Windows.Forms.Label lblCidade;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.TextBox txtSenha;
+        private System.Windows.Forms.Label lblSenha;
     }
 }

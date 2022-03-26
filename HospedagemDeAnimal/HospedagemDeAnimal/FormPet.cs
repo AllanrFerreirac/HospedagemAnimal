@@ -13,100 +13,14 @@ namespace HospedagemDeAnimal
 {
     public partial class FormPet : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Aluno\source\repos\HospedagemPet\HospedagemPet\DbHospedagemPet.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Aluno\source\repos\HospedagemPet-main\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\DatabaseHospedagem.mdf;Integrated Security=True");
 
         public FormPet()
         {
             InitializeComponent();
         }
 
-        private void btnLocalizar_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                int id = Convert.ToInt32(txtID.Text.Trim());
-                Pet pet = new Pet();
-                pet.Localiza(id);
-                txtIdTutor.Text = pet.cpf_tutor.ToString().Trim();
-                txtNome.Text = pet.nome.Trim();
-                txtSexo.Text = pet.sexo.Trim();
-                txtBreed.Text = pet.breed.Trim();
-                txtEspecie.Text = pet.especie.Trim();
-                dtpDt_N.Value = Convert.ToDateTime(pet.dt_nascimento);
-            }
-            catch (Exception er)
-            {
-                MessageBox.Show(er.Message);
-            }
-        }
-
-        private void btnCadastroPet_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                Pet pet = new Pet();
-                pet.Inserir(txtIdTutor.Text, txtNome.Text, txtSexo.Text, txtBreed.Text, txtEspecie.Text, dtpDt_N.Value);
-                MessageBox.Show("Animal cadastrado com sucesso!", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                string cpf = txtIdTutor.Text;
-                txtIdTutor.Text = "";
-                txtNome.Text = "";
-                txtSexo.Text = "";
-                txtBreed.Text = "";
-                txtEspecie.Text = "";
-                this.dtpDt_N.Value = DateTime.Now.Date;
-                ClassConecta.FecharConexao();
-            }
-            catch (Exception er)
-            {
-                MessageBox.Show(er.Message);
-            }
-        }
-
-        private void btnAttPet_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                Pet pet = new Pet();
-                pet.Atualizar(txtID.Text, txtIdTutor.Text, txtNome.Text, txtSexo.Text, txtBreed.Text, txtEspecie.Text, dtpDt_N.Value);
-                MessageBox.Show("Animal atualizado com sucesso!", "Atualizar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                string cpf = txtIdTutor.Text;
-                txtIdTutor.Text = "";
-                txtNome.Text = "";
-                txtSexo.Text = "";
-                txtBreed.Text = "";
-                txtEspecie.Text = "";
-                this.dtpDt_N.Value = DateTime.Now.Date;
-                ClassConecta.FecharConexao();
-            }
-            catch (Exception er)
-            {
-                MessageBox.Show(er.Message);
-            }
-        }
-
-        private void btnExcluirPet_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                string id = txtID.Text.Trim();
-                Pet pet = new Pet();
-                pet.Excluir(id);
-                MessageBox.Show("Cliente excluído com sucesso!", "Deletar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtIdTutor.Text = "";
-                txtNome.Text = "";
-                txtSexo.Text = "";
-                txtBreed.Text = "";
-                txtEspecie.Text = "";
-                this.dtpDt_N.Value = DateTime.Now.Date;
-                ClassConecta.FecharConexao();
-            }
-            catch (Exception er)
-            {
-                MessageBox.Show(er.Message);
-            }
-        }
-
-        private void btnBuscarPets_Click_1(object sender, EventArgs e)
+        public void MeusPets()
         {
             if (con.State == ConnectionState.Open)
             {
@@ -114,7 +28,7 @@ namespace HospedagemDeAnimal
             }
             con.Open();
             SqlCommand cmd = new SqlCommand("SELECT * FROM animal WHERE cpf_tutor = @cpf_tutor", con);
-            cmd.Parameters.AddWithValue("@cpf_tutor", txtBuscarPets.Text);
+            cmd.Parameters.AddWithValue("@cpf_tutor", FormLogin.usuarioconectado);
             cmd.CommandType = CommandType.Text;
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -146,9 +60,117 @@ namespace HospedagemDeAnimal
             }
         }
 
-        private void btnVoltar_Click(object sender, EventArgs e)
+        private void btnLocalizar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = Convert.ToInt32(txtID.Text.Trim());
+                Pet pet = new Pet();
+                pet.Localiza(id);
+                txtIdTutor.Text = pet.cpf_tutor.ToString().Trim();
+                txtNome.Text = pet.nome.Trim();
+                txtSexo.Text = pet.sexo.Trim();
+                txtBreed.Text = pet.breed.Trim();
+                txtEspecie.Text = pet.especie.Trim();
+                dtpDt_N.Value = Convert.ToDateTime(pet.dt_nascimento);
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message);
+            }
+        }
+
+        private void btnCadastroPet_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                Pet pet = new Pet();
+                pet.Inserir(txtIdTutor.Text, txtNome.Text, txtSexo.Text, txtBreed.Text, txtEspecie.Text, dtpDt_N.Value);
+                MessageBox.Show("Animal cadastrado com sucesso!", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MeusPets();
+                string cpf = txtIdTutor.Text;
+                txtIdTutor.Text = "";
+                txtNome.Text = "";
+                txtSexo.Text = "";
+                txtBreed.Text = "";
+                txtEspecie.Text = "";
+                this.dtpDt_N.Value = DateTime.Now.Date;
+                ClassConecta.FecharConexao();
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message);
+            }
+        }
+
+        private void btnAttPet_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                Pet pet = new Pet();
+                pet.Atualizar(txtID.Text, txtIdTutor.Text, txtNome.Text, txtSexo.Text, txtBreed.Text, txtEspecie.Text, dtpDt_N.Value);
+                MessageBox.Show("Animal atualizado com sucesso!", "Atualizar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MeusPets();
+                string cpf = txtIdTutor.Text;
+                txtIdTutor.Text = "";
+                txtNome.Text = "";
+                txtSexo.Text = "";
+                txtBreed.Text = "";
+                txtEspecie.Text = "";
+                this.dtpDt_N.Value = DateTime.Now.Date;
+                ClassConecta.FecharConexao();
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message);
+            }
+        }
+
+        private void btnExcluirPet_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string id = txtID.Text.Trim();
+                Pet pet = new Pet();
+                pet.Excluir(id);
+                MessageBox.Show("Cliente excluído com sucesso!", "Deletar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MeusPets();
+                txtIdTutor.Text = "";
+                txtNome.Text = "";
+                txtSexo.Text = "";
+                txtBreed.Text = "";
+                txtEspecie.Text = "";
+                this.dtpDt_N.Value = DateTime.Now.Date;
+                ClassConecta.FecharConexao();
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message);
+            }
+        }
+
+        private void FormPet_Load(object sender, EventArgs e)
+        {
+            MeusPets();
+        }
+
+        private void btnBuscarPets_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            FormPrincipal form = new FormPrincipal();
+            form.Show();
+        }
+
+        private void dgvPet_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //DataGridViewRow row = this.dgvPet.Rows[e.RowIndex];
+            //cbxAnimal.Text = row.Cells[1].Value.ToString();
+            //dtpDtInicio.Text = row.Cells[0].Value.ToString();
+            //dtpDtFim.Text = row.Cells[2].Value.ToString();
         }
     }
 }

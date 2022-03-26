@@ -19,7 +19,7 @@ namespace HospedagemDeAnimal
         public string cidade { get; set; }
         public string email { get; set; }
         public string senha { get; set; }
-
+        public string processo { get; set; }
         public List<Usuario> listacliente()
         {
             List<Usuario> li = new List<Usuario>();
@@ -49,6 +49,35 @@ namespace HospedagemDeAnimal
             SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandText = "INSERT INTO usuario(nome,cpf,celular,cep,endereco,cidade,email,senha) VALUES ('" + nome + "','" + cpf + "','" + celular + "','" + cep + "','" + endereco + "','" + cidade + "','" + email + "','" + senha + "')";
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+            ClassConecta.FecharConexao();
+        }
+        public void Procurar(int id)
+        {
+            SqlConnection con = ClassConecta.ObterConexao();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT * FROM usuario WHERE Id='" + id + "'";
+            cmd.CommandType = CommandType.Text;
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                nome = dr["nome"].ToString();
+                cpf = (int)dr["cpf"];
+                celular = (int)dr["celular"];
+                cep = (int)dr["cep"];
+                endereco = dr["endereco"].ToString();
+                cidade = dr["cidade"].ToString();
+                email = dr["email"].ToString();
+                senha = "******";
+                processo = dr["processo"].ToString();
+            }
+        }
+        public void Exclui(int id)
+        {
+            SqlConnection con = ClassConecta.ObterConexao();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "DELETE FROM usuario WHERE Id='" + id + "'";
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
             ClassConecta.FecharConexao();
