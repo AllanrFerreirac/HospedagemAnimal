@@ -82,3 +82,9 @@ C:\Users\Camilla\source\repos\HospedagemAnimal-main\HospedagemDeAnimal\Hospedage
 C:\Users\Camilla\source\repos\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\obj\Debug\HospedagemDeAnimal.exe
 C:\Users\Camilla\source\repos\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\obj\Debug\HospedagemDeAnimal.pdb
 C:\Users\Camilla\source\repos\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\obj\Debug\HospedagemDeAnimal.FormHospedagemAdmin.resources
+C:\Users\Aluno\source\repos\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\obj\Debug\HospedagemDeAnimal.FormAdminCliente.resources
+C:\Users\Aluno\source\repos\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\obj\Debug\HospedagemDeAnimal.FormHospedagemAdmin.resources
+C:\Users\Aluno\source\repos\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\obj\Debug\HospedagemDeAnimal.FormHospedagemCliente.resources
+C:\Users\Aluno\source\repos\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\obj\Debug\HospedagemDeAnimal.FormPet.resources
+C:\Users\Aluno\source\repos\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\obj\Debug\HospedagemDeAnimal.FormPrincipal.resources
+C:\Users\Aluno\source\repos\HospedagemAnimal-main\HospedagemDeAnimal\HospedagemDeAnimal\obj\Debug\HospedagemDeAnimal.FormMeusDados.resources

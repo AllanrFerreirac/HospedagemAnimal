@@ -27,43 +27,38 @@ namespace HospedagemDeAnimal
                 con.Close();
             }
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM hospedagem WHERE cpf_tutor = @cpf_tutor", con);
-            /*SELECT h.id AS [IdHospedagem], a.nome AS [Animal], h.checkin as [Checkin], h.checkout as [Checkout], h.status as [Status]
-            FROM hospedagem AS h
-            INNER JOIN animal AS a ON h.id_animal = a.id
-            INNER JOIN usuario AS u ON a.cpf_tutor = u.cpf 
-            WHERE u.cpf = 123456*/
-
-            cmd.Parameters.AddWithValue("@cpf_tutor", FormLogin.usuarioconectado);
-            cmd.CommandType = CommandType.Text;
+            SqlCommand cmd = new SqlCommand("HospedagemCliente", con);
+            cmd.Parameters.AddWithValue("@cpf", SqlDbType.Int).Value = FormLogin.usuarioconectado;
+            cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
             int linhas = dt.Rows.Count;
             if (dt.Rows.Count > 0)
             {
-                dgvPet.Columns.Add("ID", "ID");
-                dgvPet.Columns.Add("Nome", "Nome");
-                dgvPet.Columns.Add("Sexo", "Sexo");
-                dgvPet.Columns.Add("Raça", "Raça");
-                dgvPet.Columns.Add("Espécie", "Espécie");
+                //cbxAnimal.Text = dt.Rows[0]["animal"].ToString();
+                dgvPet.Columns.Add("Id", "Id");
+                dgvPet.Columns.Add("Animal", "Animal");
+                dgvPet.Columns.Add("Cpf", "Cpf");
+                dgvPet.Columns.Add("Tutor", "Tutor");
+                dgvPet.Columns.Add("Checkin", "Checkin");
+                dgvPet.Columns.Add("Checkout", "Checkout");
+                dgvPet.Columns.Add("Status", "Status");
                 for (int i = 0; i < linhas; i++)
                 {
                     DataGridViewRow item = new DataGridViewRow();
                     item.CreateCells(dgvPet);
-                    item.Cells[0].Value = dt.Rows[i]["id"].ToString();
-                    item.Cells[1].Value = dt.Rows[i]["nome"].ToString();
-                    item.Cells[2].Value = dt.Rows[i]["sexo"].ToString();
-                    item.Cells[3].Value = dt.Rows[i]["breed"].ToString();
-                    item.Cells[4].Value = dt.Rows[i]["especie"].ToString();
+                    item.Cells[0].Value = dt.Rows[i]["Id"].ToString();
+                    item.Cells[1].Value = dt.Rows[i]["Animal"].ToString();
+                    item.Cells[2].Value = dt.Rows[i]["Cpf"].ToString();
+                    item.Cells[3].Value = dt.Rows[i]["Tutor"].ToString();
+                    item.Cells[4].Value = dt.Rows[i]["Checkin"].ToString();
+                    item.Cells[5].Value = dt.Rows[i]["Checkout"].ToString();
+                    item.Cells[6].Value = dt.Rows[i]["Status"].ToString();
                     dgvPet.Rows.Add(item);
                 }
             }
-            else
-            {
-                MessageBox.Show("Nenhum animal encontrado!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                con.Close();
-            }
+            con.Close();
         }
 
         public void CarregaCbxAnimal()
@@ -75,7 +70,7 @@ namespace HospedagemDeAnimal
             SqlDataAdapter da = new SqlDataAdapter(cli, con);
             DataSet ds = new DataSet();
             da.Fill(ds, "animal");
-            cbxAnimal.ValueMember = "cpf_tutor";
+            cbxAnimal.ValueMember = "Id";
             cbxAnimal.DisplayMember = "nome";
             cbxAnimal.DataSource = ds.Tables["animal"];
             con.Close();
@@ -88,7 +83,7 @@ namespace HospedagemDeAnimal
                 int id = Convert.ToInt32(txtID.Text.Trim());
                 Hospedagem hsp = new Hospedagem();
                 hsp.Localiza(id);
-                cbxAnimal.SelectedItem = hsp.id_animal.ToString().Trim();
+                cbxAnimal.SelectedValue = hsp.id_animal.ToString().Trim();
                 dtpDtInicio.Value = Convert.ToDateTime(hsp.checkin);
                 dtpDtFim.Value = Convert.ToDateTime(hsp.checkout);
             }
@@ -103,10 +98,17 @@ namespace HospedagemDeAnimal
             try
             {
                 Hospedagem hsp = new Hospedagem();
-                hsp.Inserir(cbxAnimal.SelectedIndex, dtpDtInicio.Value, dtpDtFim.Value);
+                hsp.Inserir(cbxAnimal.SelectedValue, dtpDtInicio.Value, dtpDtFim.Value);
+                MessageBox.Show("Hospedagem cadastrada com sucesso!", "Cadastrar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvPet.Rows.Clear();
+                dgvPet.Columns.Clear();
+                dgvPet.Refresh();
+                MinhasHospedagens();
+                txtID.Text = "";
                 string animal = cbxAnimal.ValueMember;
                 this.dtpDtInicio.Value = DateTime.Now.Date;
                 this.dtpDtFim.Value = DateTime.Now.Date.AddDays(2);
+                
                 ClassConecta.FecharConexao();
             }
             catch (Exception er)
@@ -120,8 +122,13 @@ namespace HospedagemDeAnimal
             try
             {
                 Hospedagem hsp = new Hospedagem();
-                hsp.Atualizar(txtID.Text, cbxAnimal.SelectedIndex /*cbxAnimal.ValueMember*/, dtpDtInicio.Value, dtpDtFim.Value);
+                hsp.Atualizar(txtID.Text, cbxAnimal.SelectedValue, dtpDtInicio.Value, dtpDtFim.Value);
                 MessageBox.Show("Hospedagem atualizada com sucesso!", "Atualizar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvPet.Rows.Clear();
+                dgvPet.Columns.Clear();
+                dgvPet.Refresh();
+                MinhasHospedagens();
+                txtID.Text = "";
                 this.dtpDtInicio.Value = DateTime.Now.Date;
                 this.dtpDtFim.Value = DateTime.Now.Date.AddDays(2);
                 ClassConecta.FecharConexao();
@@ -139,6 +146,11 @@ namespace HospedagemDeAnimal
                 Hospedagem hsp = new Hospedagem();
                 hsp.Confirmar(txtID.Text);
                 MessageBox.Show("Hospedagem confirmada com sucesso!", "Atualizar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvPet.Rows.Clear();
+                dgvPet.Columns.Clear();
+                dgvPet.Refresh();
+                MinhasHospedagens();
+                txtID.Text = "";
                 this.dtpDtInicio.Value = DateTime.Now.Date;
                 this.dtpDtFim.Value = DateTime.Now.Date.AddDays(2);
                 ClassConecta.FecharConexao();
@@ -154,9 +166,14 @@ namespace HospedagemDeAnimal
             try
             {
                 string id = txtID.Text.Trim();
-                Pet pet = new Pet();
-                pet.Excluir(id);
+                Hospedagem hsp = new Hospedagem();
+                hsp.Excluir(id);
                 MessageBox.Show("Hospedagem excluída com sucesso!", "Deletar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvPet.Rows.Clear();
+                dgvPet.Columns.Clear();
+                dgvPet.Refresh();
+                MinhasHospedagens();
+                txtID.Text = "";
                 this.dtpDtInicio.Value = DateTime.Now.Date;
                 this.dtpDtFim.Value = DateTime.Now.Date.AddDays(2);
                 ClassConecta.FecharConexao();
@@ -176,14 +193,20 @@ namespace HospedagemDeAnimal
         private void FormHospedagemCliente_Load_1(object sender, EventArgs e)
         {
             CarregaCbxAnimal();
+            dgvPet.Rows.Clear();
+            dgvPet.Columns.Clear();
+            dgvPet.Refresh();
+            MinhasHospedagens();
         }
 
         private void dgvPet_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = this.dgvPet.Rows[e.RowIndex];
+            txtID.Text = row.Cells[0].Value.ToString();
             cbxAnimal.Text = row.Cells[1].Value.ToString();
-            dtpDtInicio.Text = row.Cells[2].Value.ToString();
-            dtpDtFim.Text = row.Cells[3].Value.ToString();
+            dtpDtInicio.Text = row.Cells[4].Value.ToString();
+            dtpDtFim.Text = row.Cells[5].Value.ToString();
         }
+
     }
 }

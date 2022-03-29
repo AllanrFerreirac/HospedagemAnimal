@@ -41,7 +41,7 @@ namespace HospedagemDeAnimal
                 c.endereco = dr["endereco"].ToString();
                 c.cidade = dr["cidade"].ToString();
                 c.email = dr["email"].ToString();
-                c.senha = "******";
+                c.processo = dr["processo"].ToString();
                 li.Add(c);
             }
             return li;
@@ -70,24 +70,22 @@ namespace HospedagemDeAnimal
 
         }
 
-        public void Procurar(int id)
+        public void Procurar(string cpf)
         {
             SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "SELECT * FROM usuario WHERE Id='" + id + "'";
+            cmd.CommandText = "SELECT * FROM usuario WHERE cpf='" + cpf + "'";
             cmd.CommandType = CommandType.Text;
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
                 nome = dr["nome"].ToString();
-                cpf = dr["cpf"].ToString();
+                //cpf = dr["cpf"].ToString();
                 celular = (int)dr["celular"];
                 cep = (int)dr["cep"];
                 endereco = dr["endereco"].ToString();
                 cidade = dr["cidade"].ToString();
                 email = dr["email"].ToString();
-                senha = "******";
-                senha = "******";
                 processo = dr["processo"].ToString();
             }
         }
@@ -112,15 +110,34 @@ namespace HospedagemDeAnimal
             }
         }
 
-        public void Exclui(int id)
+        public void Exclui(string cpf)
         {
             SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "DELETE FROM usuario WHERE Id='" + id + "'";
+            cmd.CommandText = "DELETE FROM usuario WHERE cpf='" + cpf + "'";
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
             ClassConecta.FecharConexao();
         }
 
+        public void Atualizar(string nome,int celular, int cep, string endereco, string cidade, string email, string senha)
+        {
+            SqlConnection con = ClassConecta.ObterConexao();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "UPDATE usuario SET nome='" + nome + "',celular='" + celular + "',cep='" + cep + "',endereco='" + endereco + "',cidade='" + cidade + "',email='" + email + "',senha='" + senha + "' WHERE cpf = '" + FormLogin.usuarioconectado + "'";
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+            ClassConecta.FecharConexao();
+        }
+
+        public void AtualizarAdmin(string nome, string cpf, int celular, int cep, string endereco, string cidade, string email, string processo)
+        {
+            SqlConnection con = ClassConecta.ObterConexao();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "UPDATE usuario SET nome='" + nome + "',cpf='" + cpf + "',celular='" + celular + "',cep='" + cep + "',endereco='" + endereco + "',cidade='" + cidade + "',email='" + email + "',processo='" + processo + "' WHERE cpf = '" + cpf + "'";
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+            ClassConecta.FecharConexao();
+        }
     }
 }

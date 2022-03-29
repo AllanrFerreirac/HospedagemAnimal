@@ -12,45 +12,18 @@ namespace HospedagemDeAnimal
     public class Pet
     {
         public int Id { get; set; }
-        public int cpf_tutor { get; set; }
+        public string cpf_tutor { get; set; }
         public string nome { get; set; }
         public string sexo { get; set; }
         public string breed { get; set; } //raça
         public string especie { get; set; }
         public DateTime dt_nascimento { get; set; }
 
-        //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Aluno\source\repos\HospedagemPet\HospedagemPet\DbHospedagemPet.mdf;Integrated Security=True");
-
-        public async Task<List<Pet>> listPets()
-        {
-            List<Pet> li = new List<Pet>();
-
-            SqlConnection con = ClassConecta.ObterConexao();
-            SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "SELECT * FROM animal";
-            cmd.CommandType = CommandType.Text;
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                Pet p = new Pet();
-                p.Id = (int)dr["Id"];
-                p.cpf_tutor = (int)dr["cpf_tutor"];
-                p.nome = dr["nome"].ToString();
-                p.sexo = dr["sexo"].ToString();
-                p.breed = dr["breed"].ToString();
-                p.especie = dr["especie"].ToString();
-                p.dt_nascimento = Convert.ToDateTime(dr["dt_nascimento"]);
-
-                li.Add(p);
-            }
-            return li;
-        }
-
         public void Inserir(string cpf_tutor, string nome, string sexo, string breed, string especie, DateTime dt_nascimento)
         {
             SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "INSERT INTO animal(cpf_tutor,nome,sexo,breed,especie,dt_nascimento) VALUES ('" + Convert.ToInt32(cpf_tutor) + "','" + nome + "','" + sexo + "','" + breed + "','" + especie + "',Convert(DateTime,'" + dt_nascimento + "',103))";
+            cmd.CommandText = "INSERT INTO animal(cpf_tutor,nome,sexo,breed,especie,dt_nascimento) VALUES ('" + cpf_tutor + "','" + nome + "','" + sexo + "','" + breed + "','" + especie + "',Convert(DateTime,'" + dt_nascimento + "',103))";
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
             ClassConecta.FecharConexao();
@@ -60,27 +33,17 @@ namespace HospedagemDeAnimal
         {
             SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "SELECT * FROM animal WHERE Id = '" + id + "'";
+            cmd.CommandText = "SELECT * FROM animal WHERE Id='" + id + "'";
             cmd.CommandType = CommandType.Text;
             SqlDataReader dr = cmd.ExecuteReader();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            if (dt.Rows.Count > 0)
+            while (dr.Read())
             {
-                while (dr.Read())
-                {
-                    cpf_tutor = (int)dr["cpf_tutor"];
-                    nome = dr["nome"].ToString();
-                    sexo = dr["sexo"].ToString();
-                    breed = dr["breed"].ToString();
-                    especie = dr["especie"].ToString();
-                    dt_nascimento = Convert.ToDateTime(dr["dt_nascimento"]);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Nenhum animal foi encontrado", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cpf_tutor = dr["cpf_tutor"].ToString();
+                nome = dr["nome"].ToString();
+                sexo = dr["sexo"].ToString();
+                breed = dr["breed"].ToString();
+                especie = dr["especie"].ToString();
+                dt_nascimento = Convert.ToDateTime(dr["dt_nascimento"]);
             }
         }
 
@@ -88,7 +51,7 @@ namespace HospedagemDeAnimal
         {
             SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "UPDATE animal SET cpf_tutor='" + Convert.ToInt32(cpf_tutor) + "',nome='" + nome + "', sexo='" + sexo + "', breed='" + breed + "', especie='" + especie + "', dt_nascimento=Convert(DateTime,'" + dt_nascimento + "',103) WHERE Id = '" + Convert.ToInt32(id) + "'";
+            cmd.CommandText = "UPDATE animal SET cpf_tutor='" + cpf_tutor + "',nome='" + nome + "', sexo='" + sexo + "', breed='" + breed + "', especie='" + especie + "', dt_nascimento=Convert(DateTime,'" + dt_nascimento + "',103) WHERE Id = '" + Convert.ToInt32(id) + "'";
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
             ClassConecta.FecharConexao();
@@ -98,7 +61,7 @@ namespace HospedagemDeAnimal
         {
             SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
-            string sql = "DELETE FROM animal WHERE Id = '" + Convert.ToInt32(id) + "'";
+            cmd.CommandText = "DELETE FROM animal WHERE Id = '" + Convert.ToInt32(id) + "'";
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
             ClassConecta.FecharConexao();

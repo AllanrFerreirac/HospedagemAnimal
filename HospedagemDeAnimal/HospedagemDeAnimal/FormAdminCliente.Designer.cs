@@ -35,8 +35,6 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtCidade = new System.Windows.Forms.TextBox();
             this.lblCidade = new System.Windows.Forms.Label();
-            this.txtComplemento = new System.Windows.Forms.TextBox();
-            this.lblComplemento = new System.Windows.Forms.Label();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.lblEndereco = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -64,6 +62,7 @@
             this.dgvUsuario.ReadOnly = true;
             this.dgvUsuario.Size = new System.Drawing.Size(735, 215);
             this.dgvUsuario.TabIndex = 0;
+            this.dgvUsuario.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuario_CellClick);
             // 
             // btnSair
             // 
@@ -81,7 +80,7 @@
             // 
             this.btnExcluir.BackColor = System.Drawing.Color.Silver;
             this.btnExcluir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcluir.Location = new System.Drawing.Point(470, 316);
+            this.btnExcluir.Location = new System.Drawing.Point(542, 361);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(93, 31);
             this.btnExcluir.TabIndex = 38;
@@ -93,12 +92,13 @@
             // 
             this.btnSalvar.BackColor = System.Drawing.Color.Silver;
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(129, 316);
+            this.btnSalvar.Location = new System.Drawing.Point(33, 361);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(93, 31);
             this.btnSalvar.TabIndex = 37;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnBuscar
             // 
@@ -115,7 +115,7 @@
             // txtCidade
             // 
             this.txtCidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCidade.Location = new System.Drawing.Point(402, 254);
+            this.txtCidade.Location = new System.Drawing.Point(402, 177);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(276, 22);
             this.txtCidade.TabIndex = 35;
@@ -124,29 +124,11 @@
             // 
             this.lblCidade.AutoSize = true;
             this.lblCidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCidade.Location = new System.Drawing.Point(399, 235);
+            this.lblCidade.Location = new System.Drawing.Point(399, 158);
             this.lblCidade.Name = "lblCidade";
             this.lblCidade.Size = new System.Drawing.Size(58, 16);
             this.lblCidade.TabIndex = 34;
             this.lblCidade.Text = "Cidade";
-            // 
-            // txtComplemento
-            // 
-            this.txtComplemento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtComplemento.Location = new System.Drawing.Point(402, 178);
-            this.txtComplemento.Name = "txtComplemento";
-            this.txtComplemento.Size = new System.Drawing.Size(276, 22);
-            this.txtComplemento.TabIndex = 33;
-            // 
-            // lblComplemento
-            // 
-            this.lblComplemento.AutoSize = true;
-            this.lblComplemento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComplemento.Location = new System.Drawing.Point(399, 159);
-            this.lblComplemento.Name = "lblComplemento";
-            this.lblComplemento.Size = new System.Drawing.Size(103, 16);
-            this.lblComplemento.TabIndex = 32;
-            this.lblComplemento.Text = "Complemento";
             // 
             // txtEndereco
             // 
@@ -182,7 +164,7 @@
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(52, 16);
             this.lblEmail.TabIndex = 28;
-            this.lblEmail.Text = "E-Mail";
+            this.lblEmail.Text = "E-mail";
             // 
             // txtCEP
             // 
@@ -271,14 +253,13 @@
             // ckbAdmin
             // 
             this.ckbAdmin.AutoSize = true;
-            this.ckbAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbAdmin.Location = new System.Drawing.Point(332, 289);
+            this.ckbAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbAdmin.Location = new System.Drawing.Point(402, 253);
             this.ckbAdmin.Name = "ckbAdmin";
-            this.ckbAdmin.Size = new System.Drawing.Size(78, 24);
-            this.ckbAdmin.TabIndex = 41;
+            this.ckbAdmin.Size = new System.Drawing.Size(73, 22);
+            this.ckbAdmin.TabIndex = 42;
             this.ckbAdmin.Text = "Admin";
             this.ckbAdmin.UseVisualStyleBackColor = true;
-            this.ckbAdmin.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // FormAdminCliente
             // 
@@ -293,8 +274,6 @@
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtCidade);
             this.Controls.Add(this.lblCidade);
-            this.Controls.Add(this.txtComplemento);
-            this.Controls.Add(this.lblComplemento);
             this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.lblEndereco);
             this.Controls.Add(this.txtEmail);
@@ -310,6 +289,7 @@
             this.Controls.Add(this.dgvUsuario);
             this.Name = "FormAdminCliente";
             this.Text = "Admin Cliente";
+            this.Load += new System.EventHandler(this.FormAdminCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -325,8 +305,6 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtCidade;
         private System.Windows.Forms.Label lblCidade;
-        private System.Windows.Forms.TextBox txtComplemento;
-        private System.Windows.Forms.Label lblComplemento;
         private System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.Label lblEndereco;
         private System.Windows.Forms.TextBox txtEmail;

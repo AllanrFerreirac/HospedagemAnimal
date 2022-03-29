@@ -116,6 +116,7 @@ namespace HospedagemDeAnimal
             txtCEP.Text = "";
             txtEndereco.Text = "";
             txtCidade.Text = "";
+            txtSenha.Text = "";
         }
 
         private async void btnCadastrar_Click(object sender, EventArgs e)

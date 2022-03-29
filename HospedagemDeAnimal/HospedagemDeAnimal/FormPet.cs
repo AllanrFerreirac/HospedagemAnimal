@@ -62,6 +62,10 @@ namespace HospedagemDeAnimal
                 int id = Convert.ToInt32(txtID.Text.Trim());
                 Pet pet = new Pet();
                 pet.Localiza(id);
+                dgvPet.Rows.Clear();
+                dgvPet.Columns.Clear();
+                dgvPet.Refresh();
+                MeusPets();
                 txtNome.Text = pet.nome.Trim();
                 txtSexo.Text = pet.sexo.Trim();
                 txtBreed.Text = pet.breed.Trim();
@@ -82,6 +86,9 @@ namespace HospedagemDeAnimal
                 Pet pet = new Pet();
                 pet.Inserir(user, txtNome.Text, txtSexo.Text, txtBreed.Text, txtEspecie.Text, dtpDt_N.Value);
                 MessageBox.Show("Animal cadastrado com sucesso!", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvPet.Rows.Clear();
+                dgvPet.Columns.Clear();
+                dgvPet.Refresh();
                 MeusPets();
                 txtNome.Text = "";
                 txtSexo.Text = "";
@@ -104,6 +111,9 @@ namespace HospedagemDeAnimal
                 Pet pet = new Pet();
                 pet.Atualizar(txtID.Text, user, txtNome.Text, txtSexo.Text, txtBreed.Text, txtEspecie.Text, dtpDt_N.Value);
                 MessageBox.Show("Animal atualizado com sucesso!", "Atualizar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvPet.Rows.Clear();
+                dgvPet.Columns.Clear();
+                dgvPet.Refresh();
                 MeusPets();
                 txtNome.Text = "";
                 txtSexo.Text = "";
@@ -125,7 +135,10 @@ namespace HospedagemDeAnimal
                 string id = txtID.Text.Trim();
                 Pet pet = new Pet();
                 pet.Excluir(id);
-                MessageBox.Show("Cliente excluído com sucesso!", "Deletar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Animal excluído com sucesso!", "Deletar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvPet.Rows.Clear();
+                dgvPet.Columns.Clear();
+                dgvPet.Refresh();
                 MeusPets();
                 txtNome.Text = "";
                 txtSexo.Text = "";
@@ -142,6 +155,9 @@ namespace HospedagemDeAnimal
 
         private void FormPet_Load(object sender, EventArgs e)
         {
+            dgvPet.Rows.Clear();
+            dgvPet.Columns.Clear();
+            dgvPet.Refresh();
             MeusPets();
         }
 
@@ -158,10 +174,12 @@ namespace HospedagemDeAnimal
 
         private void dgvPet_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //DataGridViewRow row = this.dgvPet.Rows[e.RowIndex];
-            //cbxAnimal.Text = row.Cells[1].Value.ToString();
-            //dtpDtInicio.Text = row.Cells[0].Value.ToString();
-            //dtpDtFim.Text = row.Cells[2].Value.ToString();
+            DataGridViewRow row = this.dgvPet.Rows[e.RowIndex];
+            txtID.Text = row.Cells[0].Value.ToString();
+            txtNome.Text = row.Cells[1].Value.ToString();
+            txtSexo.Text = row.Cells[2].Value.ToString();
+            txtBreed.Text = row.Cells[3].Value.ToString();
+            txtEspecie.Text = row.Cells[4].Value.ToString();
         }
     }
 }

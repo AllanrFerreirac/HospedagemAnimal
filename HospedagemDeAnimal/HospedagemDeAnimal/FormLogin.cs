@@ -15,7 +15,6 @@ namespace HospedagemDeAnimal
     public partial class FormLogin : Form
     {
         public static string usuarioconectado;
-        public static string cargo;
         public FormLogin()
         {
             InitializeComponent();
@@ -46,10 +45,10 @@ namespace HospedagemDeAnimal
                 cmd.Parameters.AddWithValue("@cpf", SqlDbType.NChar).Value = txtCPF.Text.Trim();
                 cmd.Parameters.AddWithValue("@senha", SqlDbType.NChar).Value = txtSenha.Text.Trim();
                 SqlDataReader usuario = cmd.ExecuteReader();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
                 if (usuario.HasRows)
                 {
                     usuarioconectado = txtCPF.Text;
-                    //cargo = usuario["processo"].ToString();
                     this.Hide();
                     FormPrincipal hos = new FormPrincipal();
                     hos.Show();

@@ -24,17 +24,25 @@ namespace HospedagemDeAnimal
         {
             try
             {
-                int cpf = Convert.ToInt32(txtCPF.Text.Trim());
+                string cpf = txtCPF.Text.Trim();
                 Usuario usuario = new Usuario();
                 usuario.Procurar(cpf);
                 txtNome.Text = usuario.nome;
-                txtCPF.Text = usuario.cpf.ToString();
+                //txtCPF.Text = usuario.cpf;
                 txtCelular.Text = usuario.celular.ToString();
                 txtCEP.Text = usuario.cep.ToString();
-                txtEndereco.Text =usuario.endereco;
+                txtEndereco.Text = usuario.endereco;
                 txtCidade.Text = usuario.cidade;
                 txtEmail.Text = usuario.email;
-                var cargo = usuario.processo == "admin" ? ckbAdmin.Checked : false;
+                //var cargo = usuario.processo == "admin" ? ckbAdmin.Checked : false;
+                if (usuario.processo == "admin")
+                {
+                    ckbAdmin.Checked = true;
+                }
+                else
+                {
+                    ckbAdmin.Checked = false;
+                }
                 //ckbAdmin = cargo;
             }
             catch (Exception er)
@@ -91,12 +99,12 @@ namespace HospedagemDeAnimal
                                 txtEndereco.Text = valor[1];
                             }
 
-                            //Complemento
-                            if (cont == 3)
-                            {
-                                string[] valor = substring.Split(":".ToCharArray());
-                                txtComplemento.Text = valor[1];
-                            }
+                            ////Complemento
+                            //if (cont == 3)
+                            //{
+                            //    string[] valor = substring.Split(":".ToCharArray());
+                            //    txtComplemento.Text = valor[1];
+                            //}
 
                             //Bairro
                             //if (cont == 4)
@@ -122,10 +130,43 @@ namespace HospedagemDeAnimal
         {
             try
             {
-                int cpf = Convert.ToInt32(txtCPF.Text.Trim());
+                string cpf = txtCPF.Text.Trim();
                 Usuario usuario = new Usuario();
                 usuario.Exclui(cpf);
                 MessageBox.Show("Usuário excluído com sucesso!", "Exclusão", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                List<Usuario> usu = usuario.listacliente();
+                dgvUsuario.DataSource = usu;
+                txtNome.Text = "";
+                txtCPF.Text = "";
+                txtCelular.Text = "";
+                txtCEP.Text = "";
+                txtEndereco.Text = "";
+                txtCidade.Text = "";
+                txtEmail.Text = "";
+                var cargo = usuario.processo == "admin" ? ckbAdmin.Checked : false;
+                //ckbAdmin.Text = "";
+                ClassConecta.FecharConexao();
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message);
+            }
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int cep = Convert.ToInt32(txtCEP.Text.Trim());
+                int celular = Convert.ToInt32(txtCelular.Text.Trim());
+                Usuario usuario = new Usuario();
+                usuario.AtualizarAdmin(txtNome.Text, txtCPF.Text, celular, cep, txtEndereco.Text, txtCidade.Text, txtEmail.Text, ckbAdmin.Text);
+                MessageBox.Show("Usuário salvo com sucesso!", "Salvar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 List<Usuario> usu = usuario.listacliente();
                 dgvUsuario.DataSource = usu;
                 txtNome.Text = "";
@@ -144,9 +185,26 @@ namespace HospedagemDeAnimal
             }
         }
 
-        private void btnSair_Click(object sender, EventArgs e)
+        private void dgvUsuario_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.Close();
+            DataGridViewRow row = this.dgvUsuario.Rows[e.RowIndex];
+            txtNome.Text = row.Cells[0].Value.ToString();
+            txtCPF.Text = row.Cells[1].Value.ToString();
+            txtCelular.Text = row.Cells[2].Value.ToString();
+            txtCEP.Text = row.Cells[3].Value.ToString();
+            txtEndereco.Text = row.Cells[4].Value.ToString();
+            txtCidade.Text = row.Cells[5].Value.ToString();
+            txtCidade.Text = row.Cells[6].Value.ToString();
+            txtEmail.Text = row.Cells[7].Value.ToString();
+            ckbAdmin.Text = row.Cells[9].Value.ToString();
         }
+
+        private void FormAdminCliente_Load(object sender, EventArgs e)
+        {
+            Usuario cli = new Usuario();
+            List<Usuario> usuario = cli.listacliente();
+            dgvUsuario.DataSource = usuario;
+        }
+
     }
 }

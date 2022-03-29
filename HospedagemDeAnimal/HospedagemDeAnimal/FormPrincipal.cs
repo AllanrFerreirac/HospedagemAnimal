@@ -13,6 +13,9 @@ namespace HospedagemDeAnimal
 {
     public partial class FormPrincipal : Form
     {
+       
+        public static string cargo;
+
         public FormPrincipal()
         {
             InitializeComponent();
@@ -28,7 +31,7 @@ namespace HospedagemDeAnimal
 
         private void meusDadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormCadastroCliente form = new FormCadastroCliente();
+            FormMeusDados form = new FormMeusDados();
             form.Show();
         }
 
@@ -50,17 +53,36 @@ namespace HospedagemDeAnimal
             {
                 MessageBox.Show("É necessário ter ao menos um pet cadastrado para acessar suas hospedagens :(", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            var user = FormLogin.usuarioconectado;
+            SqlConnection con = ClassConecta.ObterConexao();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT * FROM usuario WHERE cpf = '" + FormLogin.usuarioconectado + "'";
+            cmd.CommandType = CommandType.Text;
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Usuario user = new Usuario();
+                user.processo = dr["processo"].ToString().Trim();
+                cargo = user.processo;
+            }
+
+            if (cargo == "admin")
+            {
+                adminToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                adminToolStripMenuItem.Enabled = false;
+            }
+
         }
 
         private void hospedagensToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (FormLogin.cargo == "admin")
+            if (cargo == "admin")
             {
                 FormHospedagemAdmin form = new FormHospedagemAdmin();
                 form.Show();
@@ -73,7 +95,7 @@ namespace HospedagemDeAnimal
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (FormLogin.cargo == "admin")
+            if (cargo == "admin")
             {
                 FormAdminCliente form = new FormAdminCliente();
                 form.Show();

@@ -68,6 +68,7 @@
             this.dgvPet.ReadOnly = true;
             this.dgvPet.Size = new System.Drawing.Size(473, 347);
             this.dgvPet.TabIndex = 79;
+            this.dgvPet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPet_CellContentClick);
             // 
             // btnVoltar
             // 
@@ -77,6 +78,7 @@
             this.btnVoltar.TabIndex = 78;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // btnExcluirPet
             // 
@@ -140,7 +142,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(500, 482);
+            this.ClientSize = new System.Drawing.Size(493, 482);
             this.Controls.Add(this.dgvPet);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnExcluirPet);
