@@ -14,7 +14,7 @@ namespace HospedagemDeAnimal
         public int Id { get; set; }
         public string nome { get; set; }
         public string cpf { get; set; }
-        public int celular { get; set; }
+        public string celular { get; set; }
         public int cep { get; set; }
         public string endereco { get; set; }
         public string cidade { get; set; }
@@ -36,18 +36,19 @@ namespace HospedagemDeAnimal
                 c.Id = (int)dr["Id"];
                 c.nome = dr["nome"].ToString();
                 c.cpf = dr["cpf"].ToString();
-                c.celular = (int)dr["celular"];
+                c.celular = dr["celular"].ToString();
                 c.cep = (int)dr["cep"];
                 c.endereco = dr["endereco"].ToString();
                 c.cidade = dr["cidade"].ToString();
                 c.email = dr["email"].ToString();
+                c.senha = "*****";
                 c.processo = dr["processo"].ToString();
                 li.Add(c);
             }
             return li;
         }
 
-        public async Task<bool> Inserir(string nome, string cpf, int celular, int cep, string endereco, string cidade, string email, string senha)
+        public async Task<bool> Inserir(string nome, string cpf, string celular, int cep, string endereco, string cidade, string email, string senha)
         {
             SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
@@ -80,8 +81,8 @@ namespace HospedagemDeAnimal
             while (dr.Read())
             {
                 nome = dr["nome"].ToString();
-                //cpf = dr["cpf"].ToString();
-                celular = (int)dr["celular"];
+                this.cpf = dr["cpf"].ToString();
+                celular = dr["celular"].ToString();
                 cep = (int)dr["cep"];
                 endereco = dr["endereco"].ToString();
                 cidade = dr["cidade"].ToString();
@@ -120,7 +121,7 @@ namespace HospedagemDeAnimal
             ClassConecta.FecharConexao();
         }
 
-        public void Atualizar(string nome,int celular, int cep, string endereco, string cidade, string email, string senha)
+        public void Atualizar(string nome, string celular, int cep, string endereco, string cidade, string email, string senha)
         {
             SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
@@ -130,11 +131,20 @@ namespace HospedagemDeAnimal
             ClassConecta.FecharConexao();
         }
 
-        public void AtualizarAdmin(string nome, string cpf, int celular, int cep, string endereco, string cidade, string email, string processo)
+        public void AtualizarAdmin(string nome, string cpf, string celular, int cep, string endereco, string cidade, string email, bool checkbox)
         {
+            var processo = "";
+            if (checkbox)
+            {
+                processo = "admin";
+            }
+            else
+            {
+                processo = "user";
+            }
             SqlConnection con = ClassConecta.ObterConexao();
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "UPDATE usuario SET nome='" + nome + "',cpf='" + cpf + "',celular='" + celular + "',cep='" + cep + "',endereco='" + endereco + "',cidade='" + cidade + "',email='" + email + "',processo='" + processo + "' WHERE cpf = '" + cpf + "'";
+            cmd.CommandText = "UPDATE usuario SET nome='" + nome + "',celular='" + celular + "',cep='" + cep + "',endereco='" + endereco + "',cidade='" + cidade + "',email='" + email + "',processo='" + processo + "' WHERE cpf = '" + cpf + "'";
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
             ClassConecta.FecharConexao();

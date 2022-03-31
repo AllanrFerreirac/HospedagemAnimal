@@ -98,7 +98,7 @@ namespace HospedagemDeAnimal
             try
             {
                 Hospedagem hsp = new Hospedagem();
-                hsp.Inserir(cbxAnimal.SelectedValue, dtpDtInicio.Value, dtpDtFim.Value);
+                hsp.Inserir(cbxAnimal.SelectedValue, dtpDtInicio.Value.Date, dtpDtFim.Value.Date);
                 MessageBox.Show("Hospedagem cadastrada com sucesso!", "Cadastrar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dgvPet.Rows.Clear();
                 dgvPet.Columns.Clear();
@@ -122,7 +122,7 @@ namespace HospedagemDeAnimal
             try
             {
                 Hospedagem hsp = new Hospedagem();
-                hsp.Atualizar(txtID.Text, cbxAnimal.SelectedValue, dtpDtInicio.Value, dtpDtFim.Value);
+                hsp.Atualizar(txtID.Text, cbxAnimal.SelectedValue, dtpDtInicio.Value.Date, dtpDtFim.Value.Date);
                 MessageBox.Show("Hospedagem atualizada com sucesso!", "Atualizar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dgvPet.Rows.Clear();
                 dgvPet.Columns.Clear();
@@ -186,8 +186,7 @@ namespace HospedagemDeAnimal
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            FormPrincipal form = new FormPrincipal();
-            form.Show();
+            this.Close();
         }
 
         private void FormHospedagemCliente_Load_1(object sender, EventArgs e)
@@ -202,11 +201,20 @@ namespace HospedagemDeAnimal
         private void dgvPet_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = this.dgvPet.Rows[e.RowIndex];
-            txtID.Text = row.Cells[0].Value.ToString();
-            cbxAnimal.Text = row.Cells[1].Value.ToString();
-            dtpDtInicio.Text = row.Cells[4].Value.ToString();
-            dtpDtFim.Text = row.Cells[5].Value.ToString();
+            txtID.Text = row.Cells[0].Value.ToString().Trim();
+            cbxAnimal.Text = row.Cells[1].Value.ToString().Trim();
+            dtpDtInicio.Text = row.Cells[4].Value.ToString().Trim();
+            dtpDtFim.Text = row.Cells[5].Value.ToString().Trim();
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

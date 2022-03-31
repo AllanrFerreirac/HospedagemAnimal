@@ -20,7 +20,7 @@ namespace HospedagemDeAnimal
             InitializeComponent();
             FormSplash splash = new FormSplash();
             splash.Show();
-            Thread.Sleep(4000);
+            Thread.Sleep(1500);
             splash.Close();
         }
 

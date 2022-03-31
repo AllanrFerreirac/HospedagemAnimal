@@ -36,9 +36,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.BackgroundImage = global::HospedagemDeAnimal.Properties.Resources.pet;
+            this.BackgroundImage = global::HospedagemDeAnimal.Properties.Resources.pet_checkin;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(760, 450);
+            this.ClientSize = new System.Drawing.Size(756, 405);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormSplash";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

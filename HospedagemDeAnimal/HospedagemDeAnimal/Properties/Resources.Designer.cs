@@ -63,9 +63,79 @@ namespace HospedagemDeAnimal.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _9b15800648867d00a7c9054dff041710 {
+            get {
+                object obj = ResourceManager.GetObject("9b15800648867d00a7c9054dff041710", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit_user_icon_256 {
+            get {
+                object obj = ResourceManager.GetObject("edit-user-icon-256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Hospedagem_500x500h {
+            get {
+                object obj = ResourceManager.GetObject("Hospedagem-500x500h", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ico_petshop_7837a_large {
+            get {
+                object obj = ResourceManager.GetObject("ico-petshop-7837a-large", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pet {
             get {
                 object obj = ResourceManager.GetObject("pet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pet_checkin {
+            get {
+                object obj = ResourceManager.GetObject("pet_checkin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pet_icon_16 {
+            get {
+                object obj = ResourceManager.GetObject("pet-icon-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Silhouette_Of_a_Paw_Print_Trail___General_Pattern_Animal_Secondary {
+            get {
+                object obj = ResourceManager.GetObject("Silhouette-Of-a-Paw-Print-Trail---General-Pattern-Animal-Secondary", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

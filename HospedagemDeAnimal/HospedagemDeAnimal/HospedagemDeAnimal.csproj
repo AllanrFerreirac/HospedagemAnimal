@@ -179,6 +179,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>DatabaseHospedagem.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Silhouette-Of-a-Paw-Print-Trail---General-Pattern-Animal-Secondary.png" />
+    <None Include="Resources\ico-petshop-7837a-large.png" />
+    <None Include="Resources\edit-user-icon-256.png" />
+    <None Include="Resources\pet-icon-16.png" />
+    <None Include="Resources\9b15800648867d00a7c9054dff041710.png" />
+    <None Include="Resources\Hospedagem-500x500h.png" />
+    <None Include="Resources\pet_checkin.jpg" />
     <None Include="Resources\pet.jpg" />
   </ItemGroup>
   <ItemGroup>

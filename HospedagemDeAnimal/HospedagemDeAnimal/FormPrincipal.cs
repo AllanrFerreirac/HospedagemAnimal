@@ -75,7 +75,7 @@ namespace HospedagemDeAnimal
             }
             else
             {
-                adminToolStripMenuItem.Enabled = false;
+                adminToolStripMenuItem.Visible = false;
             }
 
         }
@@ -104,6 +104,13 @@ namespace HospedagemDeAnimal
             {
                 MessageBox.Show("Você não tem autorização para acessar essa página.", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void btnDeslogar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            FormLogin form = new FormLogin();
+            form.Show();
         }
     }
 }

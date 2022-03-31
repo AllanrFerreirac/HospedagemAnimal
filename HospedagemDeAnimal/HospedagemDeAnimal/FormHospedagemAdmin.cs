@@ -29,8 +29,8 @@ namespace HospedagemDeAnimal
             try
             {
                 Hospedagem hsp = new Hospedagem();
-                hsp.Checkin(txtID.Text);
-                MessageBox.Show("Check-in feito com sucesso!", "Inicio hospedagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                hsp.Checkout(txtID.Text);
+                MessageBox.Show("Checkout feito com sucesso!", "Fim hospedagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtID.Text = "";
                 dgvPet.Rows.Clear();
                 dgvPet.Columns.Clear();
@@ -49,8 +49,8 @@ namespace HospedagemDeAnimal
             try
             {
                 Hospedagem hsp = new Hospedagem();
-                hsp.Checkout(txtID.Text);
-                MessageBox.Show("Check-out feito com sucesso!", "Fim hospedagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                hsp.Checkin(txtID.Text);
+                MessageBox.Show("Checkin feito com sucesso!", "Inicio hospedagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtID.Text = "";
                 dgvPet.Rows.Clear();
                 dgvPet.Columns.Clear();
@@ -129,7 +129,7 @@ namespace HospedagemDeAnimal
         private void dgvPet_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = this.dgvPet.Rows[e.RowIndex];
-            txtID.Text = row.Cells[0].Value.ToString();
+            txtID.Text = row.Cells[0].Value.ToString().Trim();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)

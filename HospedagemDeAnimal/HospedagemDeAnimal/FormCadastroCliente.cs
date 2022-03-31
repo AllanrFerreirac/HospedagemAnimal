@@ -124,7 +124,7 @@ namespace HospedagemDeAnimal
             try
             {
                 Usuario usuario = new Usuario();
-                var result = await usuario.Inserir(txtNome.Text, txtCPF.Text, Convert.ToInt32(txtCelular.Text), Convert.ToInt32(txtCEP.Text), txtEndereco.Text, txtCidade.Text, txtEmail.Text, txtSenha.Text);
+                var result = await usuario.Inserir(txtNome.Text, txtCPF.Text, txtCelular.Text, Convert.ToInt32(txtCEP.Text), txtEndereco.Text, txtCidade.Text, txtEmail.Text, txtSenha.Text);
                 //List<Usuario> usu = usuario.listacliente();
                 this.Hide();
                 if (result)

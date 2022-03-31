@@ -27,15 +27,14 @@ namespace HospedagemDeAnimal
                 string cpf = txtCPF.Text.Trim();
                 Usuario usuario = new Usuario();
                 usuario.Procurar(cpf);
-                txtNome.Text = usuario.nome;
-                //txtCPF.Text = usuario.cpf;
-                txtCelular.Text = usuario.celular.ToString();
-                txtCEP.Text = usuario.cep.ToString();
-                txtEndereco.Text = usuario.endereco;
-                txtCidade.Text = usuario.cidade;
-                txtEmail.Text = usuario.email;
-                //var cargo = usuario.processo == "admin" ? ckbAdmin.Checked : false;
-                if (usuario.processo == "admin")
+                txtNome.Text = usuario.nome.Trim();
+                txtCPF.Text = usuario.cpf.Trim();
+                txtCelular.Text = usuario.celular.ToString().Trim();
+                txtCEP.Text = usuario.cep.ToString().Trim();
+                txtEndereco.Text = usuario.endereco.Trim();
+                txtCidade.Text = usuario.cidade.Trim();
+                txtEmail.Text = usuario.email.Trim();
+                if (usuario.processo.Trim() == "admin")
                 {
                     ckbAdmin.Checked = true;
                 }
@@ -43,7 +42,6 @@ namespace HospedagemDeAnimal
                 {
                     ckbAdmin.Checked = false;
                 }
-                //ckbAdmin = cargo;
             }
             catch (Exception er)
             {
@@ -144,7 +142,6 @@ namespace HospedagemDeAnimal
                 txtCidade.Text = "";
                 txtEmail.Text = "";
                 var cargo = usuario.processo == "admin" ? ckbAdmin.Checked : false;
-                //ckbAdmin.Text = "";
                 ClassConecta.FecharConexao();
             }
             catch (Exception er)
@@ -163,9 +160,8 @@ namespace HospedagemDeAnimal
             try
             {
                 int cep = Convert.ToInt32(txtCEP.Text.Trim());
-                int celular = Convert.ToInt32(txtCelular.Text.Trim());
                 Usuario usuario = new Usuario();
-                usuario.AtualizarAdmin(txtNome.Text, txtCPF.Text, celular, cep, txtEndereco.Text, txtCidade.Text, txtEmail.Text, ckbAdmin.Text);
+                usuario.AtualizarAdmin(txtNome.Text, txtCPF.Text, txtCelular.Text, cep, txtEndereco.Text, txtCidade.Text, txtEmail.Text, ckbAdmin.Checked);
                 MessageBox.Show("Usuário salvo com sucesso!", "Salvar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 List<Usuario> usu = usuario.listacliente();
                 dgvUsuario.DataSource = usu;
@@ -176,7 +172,6 @@ namespace HospedagemDeAnimal
                 txtEndereco.Text = "";
                 txtCidade.Text = "";
                 txtEmail.Text = "";
-                ckbAdmin.Text = "";
                 ClassConecta.FecharConexao();
             }
             catch (Exception er)
@@ -188,15 +183,23 @@ namespace HospedagemDeAnimal
         private void dgvUsuario_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = this.dgvUsuario.Rows[e.RowIndex];
-            txtNome.Text = row.Cells[0].Value.ToString();
-            txtCPF.Text = row.Cells[1].Value.ToString();
-            txtCelular.Text = row.Cells[2].Value.ToString();
-            txtCEP.Text = row.Cells[3].Value.ToString();
-            txtEndereco.Text = row.Cells[4].Value.ToString();
-            txtCidade.Text = row.Cells[5].Value.ToString();
-            txtCidade.Text = row.Cells[6].Value.ToString();
-            txtEmail.Text = row.Cells[7].Value.ToString();
-            ckbAdmin.Text = row.Cells[9].Value.ToString();
+            txtNome.Text = row.Cells[1].Value.ToString().Trim();
+            txtCPF.Text = row.Cells[2].Value.ToString().Trim();
+            txtCelular.Text = row.Cells[3].Value.ToString().Trim();
+            txtCEP.Text = row.Cells[4].Value.ToString().Trim();
+            txtEndereco.Text = row.Cells[5].Value.ToString().Trim();
+            txtCidade.Text = row.Cells[6].Value.ToString().Trim();
+            txtEmail.Text = row.Cells[7].Value.ToString().Trim();
+
+            var processo = row.Cells[9].Value.ToString().Trim();
+            if (processo == "admin")
+            {
+                ckbAdmin.Checked = true;
+            }
+            else
+            {
+                ckbAdmin.Checked = false;
+            }
         }
 
         private void FormAdminCliente_Load(object sender, EventArgs e)

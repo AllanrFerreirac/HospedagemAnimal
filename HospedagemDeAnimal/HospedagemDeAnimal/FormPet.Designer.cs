@@ -47,14 +47,16 @@
             this.lblID = new System.Windows.Forms.Label();
             this.btnLocalizar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSexo
             // 
-            this.txtSexo.Location = new System.Drawing.Point(285, 160);
+            this.txtSexo.Location = new System.Drawing.Point(268, 160);
             this.txtSexo.Name = "txtSexo";
-            this.txtSexo.Size = new System.Drawing.Size(144, 20);
+            this.txtSexo.Size = new System.Drawing.Size(148, 20);
             this.txtSexo.TabIndex = 47;
             // 
             // dgvPet
@@ -62,18 +64,19 @@
             this.dgvPet.AllowUserToAddRows = false;
             this.dgvPet.AllowUserToDeleteRows = false;
             this.dgvPet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPet.Location = new System.Drawing.Point(15, 294);
+            this.dgvPet.Location = new System.Drawing.Point(15, 309);
             this.dgvPet.Name = "dgvPet";
             this.dgvPet.ReadOnly = true;
-            this.dgvPet.Size = new System.Drawing.Size(539, 222);
+            this.dgvPet.Size = new System.Drawing.Size(645, 207);
             this.dgvPet.TabIndex = 41;
             this.dgvPet.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPet_CellClick);
+            this.dgvPet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPet_CellContentClick);
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(447, 265);
+            this.btnVoltar.Location = new System.Drawing.Point(577, 280);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(107, 23);
+            this.btnVoltar.Size = new System.Drawing.Size(83, 23);
             this.btnVoltar.TabIndex = 40;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
@@ -81,9 +84,9 @@
             // 
             // btnExcluirPet
             // 
-            this.btnExcluirPet.Location = new System.Drawing.Point(479, 117);
+            this.btnExcluirPet.Location = new System.Drawing.Point(497, 280);
             this.btnExcluirPet.Name = "btnExcluirPet";
-            this.btnExcluirPet.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluirPet.Size = new System.Drawing.Size(74, 23);
             this.btnExcluirPet.TabIndex = 39;
             this.btnExcluirPet.Text = "Excluir";
             this.btnExcluirPet.UseVisualStyleBackColor = true;
@@ -91,22 +94,24 @@
             // 
             // btnAttPet
             // 
-            this.btnAttPet.Location = new System.Drawing.Point(479, 77);
+            this.btnAttPet.BackColor = System.Drawing.Color.Thistle;
+            this.btnAttPet.Location = new System.Drawing.Point(497, 242);
             this.btnAttPet.Name = "btnAttPet";
-            this.btnAttPet.Size = new System.Drawing.Size(75, 23);
+            this.btnAttPet.Size = new System.Drawing.Size(163, 23);
             this.btnAttPet.TabIndex = 38;
             this.btnAttPet.Text = "Atualizar";
-            this.btnAttPet.UseVisualStyleBackColor = true;
+            this.btnAttPet.UseVisualStyleBackColor = false;
             this.btnAttPet.Click += new System.EventHandler(this.btnAttPet_Click_1);
             // 
             // btnCadastroPet
             // 
-            this.btnCadastroPet.Location = new System.Drawing.Point(479, 39);
+            this.btnCadastroPet.BackColor = System.Drawing.Color.Thistle;
+            this.btnCadastroPet.Location = new System.Drawing.Point(497, 213);
             this.btnCadastroPet.Name = "btnCadastroPet";
-            this.btnCadastroPet.Size = new System.Drawing.Size(75, 23);
+            this.btnCadastroPet.Size = new System.Drawing.Size(163, 23);
             this.btnCadastroPet.TabIndex = 37;
             this.btnCadastroPet.Text = "Cadastrar";
-            this.btnCadastroPet.UseVisualStyleBackColor = true;
+            this.btnCadastroPet.UseVisualStyleBackColor = false;
             this.btnCadastroPet.Click += new System.EventHandler(this.btnCadastroPet_Click_1);
             // 
             // label6
@@ -123,13 +128,13 @@
             this.dtpDt_N.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDt_N.Location = new System.Drawing.Point(268, 38);
             this.dtpDt_N.Name = "dtpDt_N";
-            this.dtpDt_N.Size = new System.Drawing.Size(161, 20);
+            this.dtpDt_N.Size = new System.Drawing.Size(148, 20);
             this.dtpDt_N.TabIndex = 35;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(282, 144);
+            this.label5.Location = new System.Drawing.Point(265, 144);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 34;
@@ -139,7 +144,7 @@
             // 
             this.txtEspecie.Location = new System.Drawing.Point(15, 221);
             this.txtEspecie.Name = "txtEspecie";
-            this.txtEspecie.Size = new System.Drawing.Size(220, 20);
+            this.txtEspecie.Size = new System.Drawing.Size(171, 20);
             this.txtEspecie.TabIndex = 33;
             // 
             // label4
@@ -155,7 +160,7 @@
             // 
             this.txtBreed.Location = new System.Drawing.Point(15, 160);
             this.txtBreed.Name = "txtBreed";
-            this.txtBreed.Size = new System.Drawing.Size(220, 20);
+            this.txtBreed.Size = new System.Drawing.Size(171, 20);
             this.txtBreed.TabIndex = 31;
             // 
             // lblBreed
@@ -171,7 +176,7 @@
             // 
             this.txtNome.Location = new System.Drawing.Point(15, 98);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(414, 20);
+            this.txtNome.Size = new System.Drawing.Size(401, 20);
             this.txtNome.TabIndex = 29;
             // 
             // lblNome
@@ -201,29 +206,42 @@
             // 
             // btnLocalizar
             // 
+            this.btnLocalizar.BackColor = System.Drawing.Color.Thistle;
             this.btnLocalizar.Location = new System.Drawing.Point(121, 35);
             this.btnLocalizar.Name = "btnLocalizar";
             this.btnLocalizar.Size = new System.Drawing.Size(75, 23);
             this.btnLocalizar.TabIndex = 25;
             this.btnLocalizar.Text = "Localizar";
-            this.btnLocalizar.UseVisualStyleBackColor = true;
+            this.btnLocalizar.UseVisualStyleBackColor = false;
             this.btnLocalizar.Click += new System.EventHandler(this.btnLocalizar_Click_1);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 275);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(11, 283);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 16);
+            this.label1.Size = new System.Drawing.Size(104, 23);
             this.label1.TabIndex = 48;
             this.label1.Text = "MEUS PETS";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::HospedagemDeAnimal.Properties.Resources.pet_icon_16;
+            this.pictureBox1.Location = new System.Drawing.Point(497, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(163, 177);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 49;
+            this.pictureBox1.TabStop = false;
             // 
             // FormPet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 529);
+            this.BackColor = System.Drawing.Color.LavenderBlush;
+            this.ClientSize = new System.Drawing.Size(672, 529);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSexo);
             this.Controls.Add(this.dgvPet);
@@ -244,9 +262,12 @@
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.btnLocalizar);
             this.Name = "FormPet";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meus Pets";
             this.Load += new System.EventHandler(this.FormPet_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,5 +294,6 @@
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.Button btnLocalizar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

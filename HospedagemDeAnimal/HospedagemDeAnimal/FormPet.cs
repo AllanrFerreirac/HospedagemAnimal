@@ -41,6 +41,7 @@ namespace HospedagemDeAnimal
                 dgvPet.Columns.Add("Sexo", "Sexo");
                 dgvPet.Columns.Add("Raça", "Raça");
                 dgvPet.Columns.Add("Espécie", "Espécie");
+                dgvPet.Columns.Add("Nascimento", "Nascimento");
                 for (int i = 0; i < linhas; i++)
                 {
                     DataGridViewRow item = new DataGridViewRow();
@@ -50,6 +51,7 @@ namespace HospedagemDeAnimal
                     item.Cells[2].Value = dt.Rows[i]["sexo"].ToString();
                     item.Cells[3].Value = dt.Rows[i]["breed"].ToString();
                     item.Cells[4].Value = dt.Rows[i]["especie"].ToString();
+                    item.Cells[5].Value = dt.Rows[i]["dt_nascimento"].ToString();
                     dgvPet.Rows.Add(item);
                 }
             }
@@ -168,18 +170,28 @@ namespace HospedagemDeAnimal
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            FormPrincipal form = new FormPrincipal();
-            form.Show();
+            this.Close();
         }
 
         private void dgvPet_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = this.dgvPet.Rows[e.RowIndex];
-            txtID.Text = row.Cells[0].Value.ToString();
-            txtNome.Text = row.Cells[1].Value.ToString();
-            txtSexo.Text = row.Cells[2].Value.ToString();
-            txtBreed.Text = row.Cells[3].Value.ToString();
-            txtEspecie.Text = row.Cells[4].Value.ToString();
+            txtID.Text = row.Cells[0].Value.ToString().Trim();
+            txtNome.Text = row.Cells[1].Value.ToString().Trim();
+            txtSexo.Text = row.Cells[2].Value.ToString().Trim();
+            txtBreed.Text = row.Cells[3].Value.ToString().Trim();
+            txtEspecie.Text = row.Cells[4].Value.ToString().Trim();
+            dtpDt_N.Text = row.Cells[5].Value.ToString().Trim();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvPet_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
